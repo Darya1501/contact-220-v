@@ -25,12 +25,17 @@
 }
 
 @media (max-width: 900px ) {
+  .header {
+    padding-bottom: 0;
+  }
+
   .mobile {
     display: flex;
     width: 100%;
     padding: 10px 0;
     justify-content: center;
     background-color: #FFE4D3;
+    margin-top: 20px;
   }
 
   .desctop {
@@ -39,11 +44,11 @@
 }
 
 @media (max-width: 600px ) {
-  .header {
-    padding: 15px 0;
-  }
   .navigation {
     gap: 20px;
+  }
+  .mobile {
+    margin-top: 10px;
   }
   .navigation a {
     font-size: 12px;

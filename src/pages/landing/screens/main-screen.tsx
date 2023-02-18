@@ -13,7 +13,7 @@ import { Button } from '../../../components/ui/button'
 
 export const MainScreen = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.main}>
       <div className={styles.info}>
         <h1 className={styles.header}>Интернет-магазин электрики и электротоваров</h1>
         <div className={styles.advantages}>

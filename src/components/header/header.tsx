@@ -25,17 +25,13 @@ export const Header = () => {
             <Link to='/'>
               <img className={styles.logo} src={logo} alt="logo" />
             </Link>
-            <div className={styles.desctop}>
-              <Navigation />
-            </div>
+            <div className={styles.desctop}><Navigation /></div>
             <Link to='/cart' className={styles.cart}>
               <img className={styles.cart} src={cart} alt="Корзина" />
             </Link>
-        </div>      
+        </div>
+        <div className={styles.mobile}><Navigation /></div>
       </header>
-      <div className={styles.mobile}>
-        <Navigation />
-      </div>
     </>
   )
 }
