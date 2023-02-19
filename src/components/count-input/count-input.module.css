@@ -1,5 +1,5 @@
 .counter {
-  min-width: 90px;
+  min-width: 80px;
   border: 1px solid #E0E1E4;
   display: flex;
   align-items: center;
@@ -24,4 +24,11 @@
 
 .plus {
   border-bottom: 1px solid #E0E1E4;
+}
+
+
+@media (max-width: 600px) {
+  .count {
+    font-size: 14px;
+  }
 }

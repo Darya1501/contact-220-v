@@ -1,0 +1,119 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 10px;
+  padding-right: 20px;
+  gap: 20px;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  gap: 20px;
+}
+
+.name, .price {
+  font-size: 18px;
+}
+
+.name {
+  flex-basis: 100%;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+}
+
+.minus, .plus {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #858585;
+  border-radius: 50%;
+  background-color: transparent;
+  position: relative;
+}
+
+.minus::after, .plus::after {
+  content: '';
+  height: 1px;
+  width: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+}
+
+.plus::before {
+  content: '';
+  height: 10px;
+  width: 1px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+}
+
+.minus:disabled, .plus:disabled {
+  opacity: 0.5;
+  cursor: auto;
+}
+
+.trash {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+@media (max-width: 1200px) {
+  .info {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 900px) {
+  .name, .price {
+    font-size: 16px;
+    margin: 0;
+  }
+  .quantity {
+    gap: 10px;
+  } 
+  .minus, .plus {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding-right: 10px;
+  }
+  .image {
+    width: 60px;
+    height: 60px;
+  }
+  .name, .price, .quantity span {
+    font-size: 14px;
+  }
+  .trash img{
+    width: 16px;
+  }
+}

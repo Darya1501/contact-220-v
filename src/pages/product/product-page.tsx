@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector } from '../../hooks/store-hooks'
 
@@ -15,6 +15,12 @@ export const ProductPage = () => {
 
   const { id } = useParams<{ id?: string }>();
   const currentProduct = products.find((product: TProduct) => product.id === id)
+
+  const [ count, setCount ] = useState(1);
+
+  const changeCount = (action: 'increment' | 'decrement') => {
+    action === 'increment' ? setCount(count + 1) : setCount(count - 1);
+  }
 
   const isInCart = false
 
@@ -40,8 +46,8 @@ export const ProductPage = () => {
                   </div>
                   <div className={styles.buy}>
                     <div className={styles.count}>
-                      <span className={styles.price}>{currentProduct.price * currentProduct.count} ₽</span>
-                      <CountInput product={currentProduct} />
+                      <span className={styles.price}>{currentProduct.price * count} ₽</span>
+                      <CountInput count={count} changeCount={changeCount} />
                     </div>
                     <Button isDisabled={isInCart} style={{ width: '100%' }}>
                       { isInCart ? 'Товар в корзинe' : 'В корзину' }
