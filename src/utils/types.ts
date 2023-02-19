@@ -16,6 +16,7 @@ export type TProduct = {
   price: number,
   category: string,
   image: string,
+  count: number
 }
 
 export type TCartProduct = TProduct & { count: number }
