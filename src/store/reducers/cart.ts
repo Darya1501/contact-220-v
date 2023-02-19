@@ -6,24 +6,7 @@ type TCartState = {
   products: Array<TCartProduct>
 }
 const initialCartState: TCartState = {
-  products: [
-    {
-      id: '1',
-      title: 'Glossa Розетка (с заземлением)',
-      price: 160,
-      category: 'Розетки и выключатели',
-      image: 'https://cdn.leroymerlin.ru/lmru/image/upload/v1597667025/lmcode/xFKH3lsd0kGaA_5DEzYw-Q/82277546.png',
-      count: 1
-    },
-    {
-      id: '2',
-      title: 'Другая Glossa Розетка',
-      price: 160,
-      category: 'Розетки и выключатели',
-      image: 'https://cdn.leroymerlin.ru/lmru/image/upload/v1597667025/lmcode/xFKH3lsd0kGaA_5DEzYw-Q/82277546.png',
-      count: 4
-    }
-  ]
+  products: []
 }
 
 export const cartReducer = (state = initialCartState, action: TCartActions): TCartState => {
@@ -33,10 +16,7 @@ export const cartReducer = (state = initialCartState, action: TCartActions): TCa
         ...state,
         products: [
           ...state.products,
-          {
-            ...action.product,
-            count: 1
-          }
+          action.product
         ]
       }
     }

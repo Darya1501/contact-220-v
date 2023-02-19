@@ -1,4 +1,4 @@
-import { TCartProduct, TProduct } from "../../utils/types"
+import { TCartProduct } from "../../utils/types"
 import {
   ADD_PRODUCT_TO_CART,
   REMOVE_PRODUCT_FROM_CART,
@@ -10,7 +10,7 @@ import {
 
 interface IAddProductToCart {
   readonly type: typeof ADD_PRODUCT_TO_CART,
-  product: TProduct
+  product: TCartProduct
 }
 interface IRemoveProductFromCart {
   readonly type: typeof REMOVE_PRODUCT_FROM_CART,

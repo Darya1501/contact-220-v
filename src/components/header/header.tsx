@@ -3,6 +3,7 @@ import logo from '../../images/logo-row.svg'
 import cart from '../../images/cart.svg'
 import styles from './header.module.css'
 import { Link, NavLink } from 'react-router-dom'
+import { useSelector } from '../../hooks/store-hooks'
 
 const Navigation = () => {
   return (
@@ -18,6 +19,9 @@ const Navigation = () => {
 }
 
 export const Header = () => {
+  const  { products } = useSelector(store => store.cart)
+  console.log('products: ', !!products, !!products.length);
+
   return (
     <>
       <header className={styles.header}>
@@ -28,6 +32,7 @@ export const Header = () => {
             <div className={styles.desctop}><Navigation /></div>
             <Link to='/cart' className={styles.cart}>
               <img className={styles.cart} src={cart} alt="Корзина" />
+              { products && products.length && <span className={styles.counter}>{products.length}</span>}
             </Link>
         </div>
         <div className={styles.mobile}><Navigation /></div>

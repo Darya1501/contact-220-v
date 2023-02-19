@@ -18,6 +18,23 @@
   display: none;
 }
 
+.cart {
+  position: relative;
+}
+
+.counter {
+  padding: 0 5px;
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
+  background-color: #FD7621;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+
 @media (max-width: 1200px ) {
   .navigation {
     gap: 50px;

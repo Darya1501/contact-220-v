@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useSelector } from '../../hooks/store-hooks'
+import { useDispatch, useSelector } from '../../hooks/store-hooks'
 
 import { Button } from '../../components/ui/button'
 import { TProduct } from '../../utils/types'
@@ -9,20 +9,33 @@ import styles from './product.module.css'
 import plug from '../../images/no-photo.png'
 import { Loader } from '../../components/ui/loader'
 import { CountInput } from '../../components/count-input/count-input'
+import { ADD_PRODUCT_TO_CART } from '../../store/constants/cart'
+import { updateCookieCart } from '../../utils/cart-functions'
+import { isProductInCart } from '../../utils/products-functions'
 
 export const ProductPage = () => {
   const { isProductsRequest, products } = useSelector(store => store.products)
+  const { products : cartProducts } = useSelector(store => store.cart)
 
   const { id } = useParams<{ id?: string }>();
   const currentProduct = products.find((product: TProduct) => product.id === id)
 
   const [ count, setCount ] = useState(1);
+  const [ isInCart, setIsInCart ] = useState(isProductInCart(currentProduct, cartProducts))
 
   const changeCount = (action: 'increment' | 'decrement') => {
     action === 'increment' ? setCount(count + 1) : setCount(count - 1);
   }
 
-  const isInCart = false
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    if (currentProduct) {
+      dispatch({ type: ADD_PRODUCT_TO_CART, product: { ...currentProduct, count: count } })
+      setIsInCart(true)
+      updateCookieCart([ ...cartProducts, { ...currentProduct, count: count } ])
+    }
+  }
 
   return (
     <>
@@ -49,7 +62,7 @@ export const ProductPage = () => {
                       <span className={styles.price}>{currentProduct.price * count} ₽</span>
                       <CountInput count={count} changeCount={changeCount} />
                     </div>
-                    <Button isDisabled={isInCart} style={{ width: '100%' }}>
+                    <Button isDisabled={isInCart} style={{ width: '100%' }} onClick={addToCart}>
                       { isInCart ? 'Товар в корзинe' : 'В корзину' }
                     </Button>
                     <Button isSecondary style={{ width: '100%' }}>Заказать сейчас</Button>
