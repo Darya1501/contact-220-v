@@ -14,7 +14,7 @@ export const CatalogPage = () => {
 
   const categoryClick = (category: string) => {
     if (activeCategory === category) {
-      setActiveCategory('')
+      setActiveCategory('Все')
     } else {
       setActiveCategory(category)
     }

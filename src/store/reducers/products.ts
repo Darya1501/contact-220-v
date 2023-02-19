@@ -15,48 +15,6 @@ export const initialProductsState: TProductsState = {
   isProductsFailed: false,
 
   products: [
-    {
-      id: '1',
-      title: 'Glossa Розетка (с заземлением)',
-      price: 160,
-      category: 'Розетки и выключатели',
-      image: 'https://cdn.leroymerlin.ru/lmru/image/upload/v1597667025/lmcode/xFKH3lsd0kGaA_5DEzYw-Q/82277546.png'
-    },
-    {
-      id: '2',
-      title: 'Другая Glossa Розетка',
-      price: 160,
-      category: 'Розетки и выключатели',
-      image: 'https://cdn.leroymerlin.ru/lmru/image/upload/v1597667025/lmcode/xFKH3lsd0kGaA_5DEzYw-Q/82277546.png'
-    },
-    {
-      id: '3',
-      title: 'Glossa Розетка (с заземлением)',
-      price: 160,
-      category: 'Розетки и выключатели',
-      image: 'https://cdn.leroymerlin.ru/lmru/image/upload/v1597667025/lmcode/xFKH3lsd0kGaA_5DEzYw-Q/82277546.png'
-    },
-    {
-      id: '4',
-      title: 'Другая Glossa Розетка',
-      price: 160,
-      category: 'Розетки и выключатели',
-      image: 'https://cdn.leroymerlin.ru/lmru/image/upload/v1597667025/lmcode/xFKH3lsd0kGaA_5DEzYw-Q/82277546.png'
-    },
-    {
-      id: '5',
-      title: 'Glossa Розетка (с заземлением)',
-      price: 160,
-      category: 'Розетки и выключатели',
-      image: 'https://cdn.leroymerlin.ru/lmru/image/upload/v1597667025/lmcode/xFKH3lsd0kGaA_5DEzYw-Q/82277546.png'
-    },
-    {
-      id: '6',
-      title: 'Другая Glossa Розетка Другая Glossa',
-      price: 160,
-      category: 'Розетки и выключатели',
-      image: 'https://cdn.leroymerlin.ru/lmru/image/upload/v1597667025/lmcode/xFKH3lsd0kGaA_5DEzYw-Q/82277546.png'
-    },
   ]
 }
 
