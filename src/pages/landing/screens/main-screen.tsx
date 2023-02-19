@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styles from '../landing.module.css'
 
 import icon1 from '../../../images/main-icon-1.svg'
@@ -11,7 +11,15 @@ import bunner2 from '../../../images/banner-2.png'
 import bunner3 from '../../../images/banner-3.png'
 import { Button } from '../../../components/ui/button'
 
-export const MainScreen = () => {
+type TScreenProps = {
+  formRef: React.RefObject<HTMLDivElement>
+}
+
+export const MainScreen: FC<TScreenProps> = ({ formRef }) => {
+  const scrollToRef = () => {
+    if (formRef && formRef.current) formRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
   return (
     <div className={styles.main}>
       <div className={styles.info}>
@@ -37,7 +45,7 @@ export const MainScreen = () => {
             <span>Бесплатная доставка Новороссийск, Анапа и Геленджик</span>
           </div>
         </div>
-        <Button>Заказать</Button>
+        <Button onClick={() => {setTimeout(scrollToRef)}}>Заказать</Button>
       </div>
       <div className={styles.images}>
         <img src={bunner1} alt="" />
