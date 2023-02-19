@@ -123,6 +123,16 @@
   outline: solid 2px #FD2C21;
 }
 
+/* Logo */
+.logo {
+  font-size: 36px;
+  text-align: center;
+  padding: 2px 16px;
+  border: 2px solid #000000;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
 @media (max-width: 1700px) {
   .label input {
     min-width: 298px;
