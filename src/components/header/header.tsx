@@ -20,7 +20,6 @@ const Navigation = () => {
 
 export const Header = () => {
   const  { products } = useSelector(store => store.cart)
-  console.log('products: ', !!products, !!products.length);
 
   return (
     <>
@@ -32,7 +31,7 @@ export const Header = () => {
             <div className={styles.desctop}><Navigation /></div>
             <Link to='/cart' className={styles.cart}>
               <img className={styles.cart} src={cart} alt="Корзина" />
-              { products && products.length && <span className={styles.counter}>{products.length}</span>}
+              { products && products.length !== 0 && <span className={styles.counter}>{products.length}</span>}
             </Link>
         </div>
         <div className={styles.mobile}><Navigation /></div>

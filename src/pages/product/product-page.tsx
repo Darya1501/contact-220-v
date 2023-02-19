@@ -12,6 +12,8 @@ import { CountInput } from '../../components/count-input/count-input'
 import { ADD_PRODUCT_TO_CART } from '../../store/constants/cart'
 import { updateCookieCart } from '../../utils/cart-functions'
 import { isProductInCart } from '../../utils/products-functions'
+import { Modal } from '../../components/modal/modal'
+import { Form, TFormValues } from '../../components/forms/form'
 
 export const ProductPage = () => {
   const { isProductsRequest, products } = useSelector(store => store.products)
@@ -21,6 +23,7 @@ export const ProductPage = () => {
   const currentProduct = products.find((product: TProduct) => product.id === id)
 
   const [ count, setCount ] = useState(1);
+  const [ isModal, setIsModal ] = useState(false)
   const [ isInCart, setIsInCart ] = useState(isProductInCart(currentProduct, cartProducts))
 
   const changeCount = (action: 'increment' | 'decrement') => {
@@ -35,6 +38,10 @@ export const ProductPage = () => {
       setIsInCart(true)
       updateCookieCart([ ...cartProducts, { ...currentProduct, count: count } ])
     }
+  }
+
+  const submitOrder = (data: TFormValues) => {
+    console.log('data: ', data);
   }
 
   return (
@@ -65,7 +72,7 @@ export const ProductPage = () => {
                     <Button isDisabled={isInCart} style={{ width: '100%' }} onClick={addToCart}>
                       { isInCart ? 'Товар в корзинe' : 'В корзину' }
                     </Button>
-                    <Button isSecondary style={{ width: '100%' }}>Заказать сейчас</Button>
+                    <Button onClick={() => setIsModal(true)} isSecondary style={{ width: '100%' }}>Заказать сейчас</Button>
                   </div>
                 </div>
               </>
@@ -77,6 +84,7 @@ export const ProductPage = () => {
             )
         }
       </div>
+      { isModal && <Modal onClose={() => setIsModal(false)}><Form size='small' onSubmit={submitOrder}/></Modal> }
     </>
   )
 }
