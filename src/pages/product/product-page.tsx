@@ -14,6 +14,7 @@ import { updateCookieCart } from '../../utils/cart-functions'
 import { isProductInCart } from '../../utils/products-functions'
 import { Modal } from '../../components/modal/modal'
 import { Form, TFormValues } from '../../components/forms/form'
+import { ApplicationSent } from '../../components/ui/application-sent'
 
 export const ProductPage = () => {
   const { isProductsRequest, products } = useSelector(store => store.products)
@@ -24,6 +25,7 @@ export const ProductPage = () => {
 
   const [ count, setCount ] = useState(1);
   const [ isModal, setIsModal ] = useState(false)
+  const [ isSentModal, setIsSentModal ] = useState(false)
   const [ isInCart, setIsInCart ] = useState(isProductInCart(currentProduct, cartProducts))
 
   const changeCount = (action: 'increment' | 'decrement') => {
@@ -85,6 +87,7 @@ export const ProductPage = () => {
         }
       </div>
       { isModal && <Modal onClose={() => setIsModal(false)}><Form size='small' onSubmit={submitOrder}/></Modal> }
+      { isSentModal && <Modal onClose={() => setIsSentModal(false)}><ApplicationSent /></Modal> }
     </>
   )
 }

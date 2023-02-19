@@ -1,5 +1,7 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Form, TFormValues } from '../../../components/forms/form'
+import { Modal } from '../../../components/modal/modal'
+import { ApplicationSent } from '../../../components/ui/application-sent'
 import styles from '../landing.module.css'
 
 type TScreenProps = {
@@ -7,8 +9,11 @@ type TScreenProps = {
 }
 
 export const FormScreen: FC<TScreenProps> = ({ formRef }) => {
+  const [ isSentModal, setIsSentModal ] = useState(false)
+
   const submitForm = (data: TFormValues) => {
     console.log('data: ', data);
+    setIsSentModal(true)
   }
 
   return (
@@ -19,6 +24,7 @@ export const FormScreen: FC<TScreenProps> = ({ formRef }) => {
       </div>
 
       <Form size='normal' onSubmit={submitForm} />
+      { isSentModal && <Modal onClose={() => setIsSentModal(false)}><ApplicationSent /></Modal> }
     </div>
   )
 }

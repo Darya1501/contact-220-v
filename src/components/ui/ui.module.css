@@ -133,6 +133,10 @@
   display: inline-block;
 }
 
+.sent {
+  text-align: center;
+}
+
 @media (max-width: 1700px) {
   .label input {
     min-width: 298px;

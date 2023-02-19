@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { ProductCard } from '../../../components/product-card/product-card'
 import { useSelector } from '../../../hooks/store-hooks';
 import { TProduct } from '../../../utils/types';
@@ -13,7 +14,7 @@ export const NoveltiesScreen = () => {
       <div className={styles.products}>
         { products.slice(0, 6).map((product: TProduct) => (<ProductCard key={product.id} product={product} />)) }
       </div>
-      <a className={styles.link} href='/catalog'>Все товары {'->'}</a>
+      <Link className={styles.link} to='/catalog'>Все товары {'->'}</Link>
     </div>
   )
 }

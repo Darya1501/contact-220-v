@@ -1,0 +1,12 @@
+.container {
+  padding: 80px 0;
+  flex-basis: 100%;
+}
+
+.block {
+  margin-bottom: 32px;
+}
+
+.block a {
+  color: #51A2DA;
+}
