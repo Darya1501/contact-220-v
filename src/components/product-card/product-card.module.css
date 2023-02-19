@@ -63,7 +63,7 @@
 
 @media (max-width: 600px ) {
   .card {
-    max-width: calc(50% - 10px);
+    max-width: 134px;
     padding: 10px;
   }
 
