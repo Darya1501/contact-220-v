@@ -6,7 +6,7 @@ type TInputProps = {
   id: string
   type: string
   placeholder: string
-  errormessage?: string,
+  errormessage?: string
 }
 
 export const Input = forwardRef((props: TInputProps, ref: ForwardedRef<HTMLInputElement>) => {

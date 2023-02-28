@@ -49,7 +49,7 @@ export const Form: FC<TFormProps> = ({ size, onSubmit }) => {
       <div className={ size === 'normal' ? styles.row : styles.column }>
 
         <Input 
-          label='Имя'
+          label='Имя *'
           id="name"
           type="text"
           placeholder="Иван"

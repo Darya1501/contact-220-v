@@ -77,7 +77,7 @@ export const PhoneInput = forwardRef((props: TPhoneInputProps, ref: ForwardedRef
 
   return (
     <label className={styles.label}>
-      <span>Номер телефона</span>
+      <span>Номер телефона *</span>
       { props.errormessage && <p className={styles.error}>{props.errormessage}</p> }
       <input
         {...props}

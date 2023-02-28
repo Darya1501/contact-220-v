@@ -3,10 +3,32 @@
   flex-basis: 100%;
 }
 
+.container h2 {
+  margin-bottom: 24px;
+}
+
 .block {
   margin-bottom: 32px;
 }
 
+.block h3 {
+  margin-bottom: 16px;
+}
+.block p {
+  margin-bottom: 12px;
+}
+.block span {
+  font-weight: bold;
+}
 .block a {
-  color: #51A2DA;
+  color: #FD7621;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 40px 0;
+  }
+  .block {
+    font-size: 14px;
+  }
 }

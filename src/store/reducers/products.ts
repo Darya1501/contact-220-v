@@ -11,7 +11,7 @@ type TProductsState = {
 
 export const initialProductsState: TProductsState = {
   isProductsRequest: false,
-  isProductsSuccess: true, // TODO: после подключения БД заменить на false
+  isProductsSuccess: false,
   isProductsFailed: false,
 
   products: [

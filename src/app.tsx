@@ -16,7 +16,7 @@ import { CartPage } from './pages/cart/cart-page';
 import { CatalogPage } from './pages/catalog/catalog-page';
 import { LandingPage } from './pages/landing/landing-page';
 import { ProductPage } from './pages/product/product-page';
-import { ContactsPage } from './pages/info/contacts-page';
+import { AboutPage } from './pages/info/contacts-page';
 import { QuestionsPage } from './pages/info/questions-page';
 import { Error404 } from './pages/info/error-404';
 
@@ -59,7 +59,7 @@ function App() {
           <Route path="/catalog" element={ <CatalogPage /> } />
           <Route path="/catalog/:id" element={ <ProductPage /> } />
           <Route path="/cart" element={ <CartPage /> } />
-          <Route path="/contacts" element={ <ContactsPage /> } />
+          <Route path="/about" element={ <AboutPage /> } />
           <Route path="/questions" element={ <QuestionsPage /> } />
           <Route path="*" element={ <Error404 /> } />
         </Routes>

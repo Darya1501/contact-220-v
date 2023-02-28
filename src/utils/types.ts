@@ -11,12 +11,17 @@ export type TApplicationActions =
 export type AppThunk<TReturn = void> = ThunkAction<TReturn, RootState, never, TApplicationActions>;
 export type AppDispatch = ThunkDispatch<RootState, never, TApplicationActions>;
 
+export type TProductsCharacteristic = {
+  [name: string]: string
+}
+
 export type TProduct = {
   id: string,
   title: string,
   price: number,
   category: string,
-  image: string
+  image: string,
+  characteristics: Array<TProductsCharacteristic>
 }
 
 export type TCartProduct = TProduct & { count: number }

@@ -20,6 +20,7 @@ export const CatalogPage = () => {
     }
   }
 
+  // TODO: Изменить верстку на мобильных
   const Navigation = () => (
     <div className={styles.navigation}>
       {
@@ -39,16 +40,13 @@ export const CatalogPage = () => {
     <div className={styles.products}>
       { 
         products.map(product => {
-          if (activeCategory !== 'Все') {
-            if (product.category === activeCategory) {
-              return (<ProductCard key={product.id} product={product} />)
-            } else {
-              return null
-            }
-          } else {
-            return (<ProductCard key={product.id} product={product} />)
-          }
-        }
+          const style = activeCategory === 'Все' ? undefined : activeCategory === product.category ? undefined : ({display: 'none'});
+          return (
+          <ProductCard
+            key={product.id}
+            product={product}
+            style={style} />
+        )}
       )}
     </div>
   )
