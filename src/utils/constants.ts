@@ -1,5 +1,6 @@
 export const ESC_KEY = 'Escape';
 export const COOKIE_CART_NAME = 'contact-220-v-cart'
+export const COOKIE_NOTICE_NAME = 'contact-220-v-cookie-notice'
 
 // Контакты
 export const PHONE_NUMBER = '+79892463953'

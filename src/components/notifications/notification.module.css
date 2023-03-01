@@ -1,0 +1,44 @@
+.notification {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  margin-right: 10px;
+
+  padding: 32px;
+  border-radius: 16px;
+  background-color: #fff;
+  border: 1px solid #E0E1E4;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.notification p {
+  max-width: 267px;
+  font-size: 14px;
+}
+
+.notification img {
+  width: 30px;
+  height: 40px;
+}
+
+.notification button {
+  padding: 8px 16px;
+  background-color: #FD7621;
+  border-radius: 8px;
+  color: #fff;
+  border: 1px solid #FD7621;
+}
+
+
+@media (max-width: 600px) {
+  .notification {
+    padding: 16px;
+    gap: 12px;
+  }
+  .notification p {
+    font-size: 12px;
+  }
+}

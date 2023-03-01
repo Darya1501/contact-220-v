@@ -29,6 +29,6 @@ export const Modal: FC<TModalProps> = ({ children, onClose }) => {
         </button>
         {children}
       </div>
-    </>, document.getElementById('react-modals')!
+    </>, document.getElementById('react-modals') as HTMLElement
   )
 }

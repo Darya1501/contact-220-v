@@ -1,5 +1,5 @@
 import { COOKIE_CART_NAME } from "./constants";
-import { getCookie, setCookie } from "./cookies";
+import { getCookie, isCookie, setCookie } from "./cookies";
 import { TCartProduct, TProduct } from "./types";
 
 type TCookieProduct = {
@@ -27,5 +27,5 @@ export const getCookieCart = (products: Array<TProduct>) => {
 }
 
 export const isCookieCart = () => {
-  return !!getCookie(COOKIE_CART_NAME)?.length;
+  return isCookie(COOKIE_CART_NAME);
 }
