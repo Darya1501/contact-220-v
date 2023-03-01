@@ -42,7 +42,7 @@ export const MainScreen: FC<TScreenProps> = ({ formRef }) => {
 
           <div className={styles.advantage}>
             <img className={styles.icon} src={icon4} alt="" />
-            <span>Бесплатная доставка Новороссийск, Анапа и Геленджик</span>
+            <span>Быстрая доставка Новороссийск, Анапа и Геленджик</span>
           </div>
         </div>
         <Button onClick={() => {setTimeout(scrollToRef)}}>Заказать</Button>

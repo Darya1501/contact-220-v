@@ -13,6 +13,8 @@ import { ApplicationSent } from '../../components/ui/application-sent'
 import { CLEAR_CART } from '../../store/constants/cart'
 import { COOKIE_CART_NAME } from '../../utils/constants'
 import { deleteCookie } from '../../utils/cookies'
+import { sendTgMessage } from '../../utils/send-tg-message'
+import { SmtWentWrong } from '../../components/ui/smt-went-wrong'
 
 export const CartPage = () => {
   const { isProductsRequest } = useSelector(store => store.products)
@@ -20,6 +22,7 @@ export const CartPage = () => {
 
   const [ isModal, setIsModal ] = useState(false)
   const [ isSentModal, setIsSentModal ] = useState(false)
+  const [ isNotSentModal, setIsNotSentModal ] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -35,20 +38,23 @@ export const CartPage = () => {
   }
 
   const submitOrder = async (data: TFormValues) => {
-    const title = 'Новый заказ';
-    const message = 
-    `Имя: ${data.name}, номер телефона: ${data.phone}. Дополнительно: адрес - ${data.address}, комментарий - ${data.comment}.
-    Заказ:${products.map(product => ` id: ${product.id}, название: ${product.title}, количество ${product.count}`)}`;
+    let message = `<strong>Новый заказ (из корзины)</strong>\n\nИмя: ${data.name}\nНомер телефона: ${data.phone}\n`;
+    if (data.address) message += `\nАдрес доставки: ${data.address}`
+    if (data.comment) message += `\nКомментарий: ${data.comment}`
+    message += `\n\nЗаказ:${products.map(product => ` 
+    - артикул: ${product.id}, название: ${product.title}, количество ${product.count}`)}`
 
-    await fetch('send.php', {
-      method: "POST",
-      body: JSON.stringify({ title: title, message: message })
+    sendTgMessage(message)
+    .then(() => {
+      dispatch({ type: CLEAR_CART })
+      deleteCookie(COOKIE_CART_NAME)
+      setIsModal(false)
+      setIsSentModal(true)
     })
-
-    dispatch({ type: CLEAR_CART })
-    deleteCookie(COOKIE_CART_NAME)
-    setIsModal(false)
-    setIsSentModal(true)
+    .catch(() => {
+      setIsModal(false)
+      setIsNotSentModal(true)
+    })
   }
 
   return (
@@ -69,6 +75,8 @@ export const CartPage = () => {
       </div>
       { isModal && <Modal onClose={() => setIsModal(false)}><Form size='small' onSubmit={submitOrder}/></Modal> }
       { isSentModal && <Modal onClose={() => setIsSentModal(false)}><ApplicationSent /></Modal> }
+      { isNotSentModal && <Modal onClose={() => setIsNotSentModal(false)}><SmtWentWrong /></Modal> }
+
     </>
   )
 }

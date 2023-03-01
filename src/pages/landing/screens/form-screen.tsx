@@ -2,6 +2,8 @@ import React, { FC, useState } from 'react'
 import { Form, TFormValues } from '../../../components/forms/form'
 import { Modal } from '../../../components/modal/modal'
 import { ApplicationSent } from '../../../components/ui/application-sent'
+import { SmtWentWrong } from '../../../components/ui/smt-went-wrong'
+import { sendTgMessage } from '../../../utils/send-tg-message'
 import styles from '../landing.module.css'
 
 type TScreenProps = {
@@ -10,36 +12,16 @@ type TScreenProps = {
 
 export const FormScreen: FC<TScreenProps> = ({ formRef }) => {
   const [ isSentModal, setIsSentModal ] = useState(false)
+  const [ isNotSentModal, setIsNotSentModal ] = useState(false)
 
   const submitForm = async (data: TFormValues) => {
-    const url_api = `https://api.telegram.org/bot${ process.env.REACT_APP_TELEGRAM_TOKEN }/sendMessage`
+    let message = `<strong>Заявка на звонок с лендинга</strong>\n\nИмя: ${data.name}\nНомер телефона: ${data.phone}\n\n`;
+    if (data.address) message += `Адрес доставки: ${data.address}\n`
+    if (data.comment) message += `Комментарий: ${data.comment}`
 
-    // const title = 'Заявка на звонок с лендинга';
-    const message = 
-      `Имя: ${data.name}, номер телефона: ${data.phone}. Дополнительно: адрес - ${data.address}, комментарий - ${data.comment}`;
-
-    const params = {
-      chat_id: process.env.REACT_APP_TELEGRAM_CHAT_ID,
-      text: message
-    }
-
-    await fetch(url_api, {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'User-Agent': 'Telegram Bot SDK - (https://github.com/irazasyed/telegram-bot-sdk)',
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(params)
-    })
-    .then(function (response) {
-      console.log('response: ', response);
-    })
-    .catch(function (error) {
-      console.log('error: ', error);
-    });
-
-    // setIsSentModal(true)
+    sendTgMessage(message)
+    .then( () => setIsSentModal(true) )
+    .catch( () => setIsNotSentModal(true) )
   }
 
   return (
@@ -51,6 +33,7 @@ export const FormScreen: FC<TScreenProps> = ({ formRef }) => {
 
       <Form size='normal' onSubmit={submitForm} />
       { isSentModal && <Modal onClose={() => setIsSentModal(false)}><ApplicationSent /></Modal> }
+      { isNotSentModal && <Modal onClose={() => setIsNotSentModal(false)}><SmtWentWrong /></Modal> }
     </div>
   )
 }

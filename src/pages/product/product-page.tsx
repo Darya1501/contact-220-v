@@ -15,6 +15,8 @@ import { isProductInCart } from '../../utils/products-functions'
 import { Modal } from '../../components/modal/modal'
 import { Form, TFormValues } from '../../components/forms/form'
 import { ApplicationSent } from '../../components/ui/application-sent'
+import { sendTgMessage } from '../../utils/send-tg-message'
+import { SmtWentWrong } from '../../components/ui/smt-went-wrong'
 
 export const ProductPage = () => {
   const { isProductsRequest, products } = useSelector(store => store.products)
@@ -34,6 +36,7 @@ export const ProductPage = () => {
   const [ count, setCount ] = useState(1);
   const [ isModal, setIsModal ] = useState(false)
   const [ isSentModal, setIsSentModal ] = useState(false)
+  const [ isNotSentModal, setIsNotSentModal ] = useState(false)
   const [ isInCart, setIsInCart ] = useState(isProductInCart(currentProduct, cartProducts))
 
   const changeCount = (action: 'increment' | 'decrement') => {
@@ -52,18 +55,20 @@ export const ProductPage = () => {
 
   const submitOrder = async (data: TFormValues) => {
     if (currentProduct) {
-      const title = 'Новый заказ';
-      const message = 
-      `Имя: ${data.name}, номер телефона: ${data.phone}. Дополнительно: адрес - ${data.address}, комментарий - ${data.comment}.
-      Заказ: ${currentProduct.title} (артикул: ${currentProduct.id}), количество: ${count})}`;
+      let message = `<strong>Новый заказ (со страницы товара)</strong>\n\nИмя: ${data.name}\nНомер телефона: ${data.phone}\n`;
+      if (data.address) message += `\nАдрес доставки: ${data.address}`
+      if (data.comment) message += `\nКомментарий: ${data.comment}`
+      message += `\n\nЗаказ: ${currentProduct.title} (артикул: ${currentProduct.id}), количество: ${count}`
 
-      await fetch('send.php', {
-        method: "POST",
-        body: JSON.stringify({ title: title, message: message })
+      sendTgMessage(message)
+      .then(() => {
+        setIsModal(false)
+        setIsSentModal(true)
       })
-
-      setIsModal(false)
-      setIsSentModal(true)
+      .catch(() => {
+        setIsModal(false)
+        setIsNotSentModal(true)
+      })
     }
   }
 
@@ -116,6 +121,7 @@ export const ProductPage = () => {
       </div>
       { isModal && <Modal onClose={() => setIsModal(false)}><Form size='small' onSubmit={submitOrder}/></Modal> }
       { isSentModal && <Modal onClose={() => setIsSentModal(false)}><ApplicationSent /></Modal> }
+      { isNotSentModal && <Modal onClose={() => setIsNotSentModal(false)}><SmtWentWrong /></Modal> }
     </>
   )
 }
