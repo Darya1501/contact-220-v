@@ -14,6 +14,11 @@
   gap: 100px;
 }
 
+.active {
+  color: #FD7621;
+  cursor: default;
+}
+
 .mobile {
   display: none;
 }

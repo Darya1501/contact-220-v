@@ -15,7 +15,7 @@ export const Footer = () => {
           <div className={styles.block}>
             <span>Информация</span>
             <Link to='about'>О компании</Link>
-            <span>Доставка и оплата</span>
+            <Link to='questions'>Доставка и оплата</Link>
           </div>
           <div className={styles.block}>
             <span>Мы на торговых площадках</span>

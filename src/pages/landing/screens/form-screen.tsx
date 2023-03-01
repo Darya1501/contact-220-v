@@ -12,15 +12,34 @@ export const FormScreen: FC<TScreenProps> = ({ formRef }) => {
   const [ isSentModal, setIsSentModal ] = useState(false)
 
   const submitForm = async (data: TFormValues) => {
-    const title = 'Заявка на звонок с лендинга';
+    const url_api = `https://api.telegram.org/bot${ process.env.REACT_APP_TELEGRAM_TOKEN }/sendMessage`
+
+    // const title = 'Заявка на звонок с лендинга';
     const message = 
       `Имя: ${data.name}, номер телефона: ${data.phone}. Дополнительно: адрес - ${data.address}, комментарий - ${data.comment}`;
 
-    await fetch('send.php', {
-      method: "POST",
-      body: JSON.stringify({ title: title, message: message })
+    const params = {
+      chat_id: process.env.REACT_APP_TELEGRAM_CHAT_ID,
+      text: message
+    }
+
+    await fetch(url_api, {
+      method: 'POST',
+      headers: {
+        accept: 'application/json',
+        'User-Agent': 'Telegram Bot SDK - (https://github.com/irazasyed/telegram-bot-sdk)',
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(params)
     })
-    setIsSentModal(true)
+    .then(function (response) {
+      console.log('response: ', response);
+    })
+    .catch(function (error) {
+      console.log('error: ', error);
+    });
+
+    // setIsSentModal(true)
   }
 
   return (
