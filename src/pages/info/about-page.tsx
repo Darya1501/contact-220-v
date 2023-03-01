@@ -5,7 +5,7 @@ import styles from './info.module.css'
 export const AboutPage = () => {
   return (
     <div className={`container ${styles.container}`}>
-      <h2>О комании</h2>
+      <h2>О компании</h2>
       <div className={styles.block}>
         <h3>Контакты</h3>
         <p>Основной номер телефона: <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER_FORMATTED}</a></p>

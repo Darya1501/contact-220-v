@@ -67,7 +67,7 @@
 
 @media (max-width: 600px ) {
   .navigation {
-    gap: 20px;
+    gap: 12px;
   }
   .mobile {
     margin-top: 10px;

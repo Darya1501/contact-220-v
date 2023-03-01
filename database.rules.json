@@ -3,6 +3,10 @@
     "products": {
       ".read": true,
       ".write": false
+    },
+    "services": {
+      ".read": true,
+      ".write": false
     }
   }
 }

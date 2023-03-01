@@ -16,9 +16,11 @@ import { CartPage } from './pages/cart/cart-page';
 import { CatalogPage } from './pages/catalog/catalog-page';
 import { LandingPage } from './pages/landing/landing-page';
 import { ProductPage } from './pages/product/product-page';
-import { AboutPage } from './pages/info/contacts-page';
+import { AboutPage } from './pages/info/about-page';
 import { QuestionsPage } from './pages/info/questions-page';
 import { Error404 } from './pages/info/error-404';
+import { ServicesPage } from './pages/services/services-page';
+import { getServices } from './store/actions/services';
 
 const app = initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -39,6 +41,7 @@ function App() {
   useEffect(
     () => {
       dispatch(getProducts());
+      dispatch(getServices());
     },
     [dispatch]
   );
@@ -58,6 +61,7 @@ function App() {
           <Route path="/" element={ <LandingPage /> } />
           <Route path="/catalog" element={ <CatalogPage /> } />
           <Route path="/catalog/:id" element={ <ProductPage /> } />
+          <Route path="/services" element={ <ServicesPage /> } />
           <Route path="/cart" element={ <CartPage /> } />
           <Route path="/about" element={ <AboutPage /> } />
           <Route path="/questions" element={ <QuestionsPage /> } />
