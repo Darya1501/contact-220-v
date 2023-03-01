@@ -11,6 +11,7 @@ export const CatalogPage = () => {
   const categories = getCategories(products);
 
   const [ activeCategory, setActiveCategory ] = useState('Все')
+  const [ isMobileCategoriesVisiable, setIsMobileCategoriesVisiable] = useState(false)
 
   const categoryClick = (category: string) => {
     if (activeCategory === category) {
@@ -18,9 +19,9 @@ export const CatalogPage = () => {
     } else {
       setActiveCategory(category)
     }
+    if (isMobileCategoriesVisiable) setIsMobileCategoriesVisiable(false)
   }
 
-  // TODO: Изменить верстку на мобильных
   const Navigation = () => (
     <div className={styles.navigation}>
       {
@@ -59,7 +60,20 @@ export const CatalogPage = () => {
         isProductsSuccess ?
         (products.length ? (
           <>
-            <Navigation />
+            <div className={styles.desctop}>
+              <Navigation />
+            </div>
+
+            <div className={styles.mobile}>
+              <div
+                className={styles.mobileNav}
+                onClick={() => setIsMobileCategoriesVisiable(true)}
+              >
+                <span className={styles.category}>Категория: {!isMobileCategoriesVisiable && activeCategory}</span>
+              </div>
+              { isMobileCategoriesVisiable && (<Navigation />) }
+            </div>
+
             <Products />
           </>
         ) : (<h2>В магазине пока нет товаров. Загляните к нам позже</h2>)) : null
