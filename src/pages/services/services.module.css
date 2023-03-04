@@ -1,0 +1,53 @@
+.container {
+  padding: 80px 0;
+}
+
+.container h2 {
+  margin-bottom: 32px;
+}
+
+.container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ctegory {
+  background-color: rgb(255, 255, 255);
+}
+
+.name {
+  text-align: center;
+}
+
+.container td {
+  border: 1px solid #909193;
+  padding: 10px 16px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 40px 0;
+  }
+  .container h2 {
+    margin-bottom: 24px;
+  }
+  .container td {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container td {
+    padding: 6px 8px;
+  }
+  .container h2 {
+    font-size: 18px;
+  }
+  .ctegory {
+    text-align: center;
+  }
+  .name {
+    text-align: left;
+    width: 60%;
+  }
+}

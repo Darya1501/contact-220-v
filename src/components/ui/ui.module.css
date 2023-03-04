@@ -1,0 +1,181 @@
+.button {
+  padding: 16px 80px;
+  background-color: #FD7621;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  border: 1px solid #FD7621;
+  align-self: center;
+}
+
+.secondary {
+  background-color: transparent;
+  color: #FD7621;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Для лоадера */
+.lds {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+}
+.lds div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #FD7621;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+/* Для инпутов */
+.label {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.label span {
+  margin-left: 16px;
+  margin-bottom: 16px;
+}
+
+.label input {
+  padding: 12px 16px;
+  min-width: 400px;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #E0E1E4;
+  border-radius: 16px;
+  font-size: 16px;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+}
+
+.label input:focus {
+  outline: solid 2px #FD7621;
+}
+
+.label input::placeholder {
+  font-size: 16px;
+  color: #E0E1E4;
+  font-family: 'Inter', sans-serif;
+}
+
+.error {
+  margin: 0;
+  position: absolute;
+  bottom: -18px;
+  right: 16px;
+  font-size: 12px;
+  color: #FD2C21
+}
+
+.error+input {
+  outline: solid 2px #FD2C21;
+}
+
+/* Logo */
+.logo {
+  font-size: 36px;
+  text-align: center;
+  padding: 2px 16px;
+  border: 2px solid #000000;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.sent {
+  text-align: center;
+}
+
+@media (max-width: 1700px) {
+  .label input {
+    min-width: 298px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .label input {
+    min-width: 268px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .button {
+    padding: 12px 60px;
+    font-size: 14px;
+  }
+
+  .label span {
+    margin-bottom: 10px;
+  }
+
+  .label input {
+    font-size: 14px;
+    min-width: 320px;
+  }
+
+  .label input::placeholder {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px ) { 
+  .label input {
+    min-width: 100%;
+    padding: 10px 12px;
+  }
+
+  .label span {
+    font-size: 14px;
+  }
+}
