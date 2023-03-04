@@ -22,7 +22,11 @@ export type TProduct = {
   price: number,
   category: string,
   image: string,
-  characteristics: Array<TProductsCharacteristic>
+  characteristics?: Array<TProductsCharacteristic>,
+  quantity?: {
+    count: number,
+    show: boolean
+  }
 }
 
 export type TCartProduct = TProduct & { count: number }

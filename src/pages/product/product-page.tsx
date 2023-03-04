@@ -58,7 +58,7 @@ export const ProductPage = () => {
       let message = `<strong>Новый заказ (со страницы товара)</strong>\n\nИмя: ${data.name}\nНомер телефона: ${data.phone}\n`;
       if (data.address) message += `\nАдрес доставки: ${data.address}`
       if (data.comment) message += `\nКомментарий: ${data.comment}`
-      message += `\n\nЗаказ: ${currentProduct.title} (артикул: ${currentProduct.id}), количество: ${count}`
+      message += `\n\nЗаказ: ${currentProduct.title} (артикул: ${currentProduct.id}),\nколичество: ${count}`
 
       sendTgMessage(message)
       .then(() => {
@@ -88,26 +88,33 @@ export const ProductPage = () => {
                     <div className={styles.characteristics}>
                       <p>Основные характеристики</p>
                       {
+                        currentProduct.characteristics &&
                         getCharacteristics(currentProduct.characteristics).length ?
                         getCharacteristics(currentProduct.characteristics).map(
                           (characteristic: {name: string, value: string}) => (
                           <div className={styles.characteristic} key={characteristic.name}>
-                            <span>{characteristic.name}</span>
-                            <span>{characteristic.value}</span>
+                            <span className={styles.name}>{characteristic.name}</span>
+                            <span className={styles.value}>{characteristic.value}</span>
                           </div>
                         )) : (<span>У товара не указаны характеристики</span>)
                       }
                     </div>
                   </div>
-                  <div className={styles.buy}>
-                    <div className={styles.count}>
-                      <span className={styles.price}>{currentProduct.price * count} ₽</span>
-                      <CountInput count={count} changeCount={changeCount} />
+                  <div>
+                    <div className={styles.buy}>
+                      <div className={styles.count}>
+                        <span className={styles.price}>{currentProduct.price * count} ₽</span>
+                        <CountInput count={count} changeCount={changeCount} />
+                      </div>
+                      <Button isDisabled={isInCart} style={{ width: '100%' }} onClick={addToCart}>
+                        { isInCart ? 'Товар в корзинe' : 'В корзину' }
+                      </Button>
+                      <Button onClick={() => setIsModal(true)} isSecondary style={{ width: '100%' }}>Заказать сейчас</Button>
                     </div>
-                    <Button isDisabled={isInCart} style={{ width: '100%' }} onClick={addToCart}>
-                      { isInCart ? 'Товар в корзинe' : 'В корзину' }
-                    </Button>
-                    <Button onClick={() => setIsModal(true)} isSecondary style={{ width: '100%' }}>Заказать сейчас</Button>
+                    {
+                      currentProduct.quantity && currentProduct.quantity.show && currentProduct.quantity.count > 0 &&
+                      (<p className={styles.quantity}>Количество на складе: {currentProduct.quantity.count}</p>)
+                    }
                   </div>
                 </div>
               </>

@@ -3,8 +3,8 @@ export const COOKIE_CART_NAME = 'contact-220-v-cart'
 export const COOKIE_NOTICE_NAME = 'contact-220-v-cookie-notice'
 
 // Контакты
-export const PHONE_NUMBER = '+79892463953'
-export const PHONE_NUMBER_FORMATTED = '+7 (989) 246-39-53'
+export const PHONE_NUMBER = ''
+export const PHONE_NUMBER_FORMATTED = ''
 export const PHONE_NUMBER_2 = '+79002700675'
 export const PHONE_NUMBER_FORMATTED_2 = '+7 (900) 270-06-75'
 

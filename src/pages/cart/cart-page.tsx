@@ -41,8 +41,8 @@ export const CartPage = () => {
     let message = `<strong>Новый заказ (из корзины)</strong>\n\nИмя: ${data.name}\nНомер телефона: ${data.phone}\n`;
     if (data.address) message += `\nАдрес доставки: ${data.address}`
     if (data.comment) message += `\nКомментарий: ${data.comment}`
-    message += `\n\nЗаказ:${products.map(product => ` 
-    - артикул: ${product.id}, название: ${product.title}, количество ${product.count}`)}`
+    message += `\n\nЗаказ:${products.map((product, index) => 
+    `\n${index + 1}) артикул: ${product.id},\nназвание: ${product.title},\nколичество: ${product.count}`)}`
 
     sendTgMessage(message)
     .then(() => {

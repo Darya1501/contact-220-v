@@ -47,6 +47,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  margin-bottom: 24px;
 }
 
 .characteristic {
@@ -62,6 +63,19 @@
   margin-bottom: 24px;
 }
 
+.name {
+  margin-right: 24px;
+  flex-shrink: 0;
+}
+
+.value {
+  text-align: right;
+}
+
+.quantity {
+  margin-left: 40px;
+}
+
 .buy {
   min-width: 368px;
   background-color: #fff;
@@ -71,6 +85,7 @@
   padding: 20px 40px;
   gap: 16px;
   border-radius: 16px;
+  margin-bottom: 24px;
 } 
 
 .count {
@@ -112,7 +127,6 @@
 
   .price {
     font-size: 24px;
-    margin-bottom: 20px;
   }
   .buttons {
     flex-direction: column;
@@ -156,5 +170,8 @@
   .buy {
     min-width: 288px;
     padding: 20px 24px;
+  }
+  .quantity {
+    margin-left: 24px;
   }
 }

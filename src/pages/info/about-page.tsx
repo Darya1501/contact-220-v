@@ -1,5 +1,5 @@
 import React from 'react'
-import { EMAIL, PHONE_NUMBER, PHONE_NUMBER_2, PHONE_NUMBER_FORMATTED, PHONE_NUMBER_FORMATTED_2, YANDEX_MARKET } from '../../utils/constants'
+import { EMAIL, PHONE_NUMBER_2, PHONE_NUMBER_FORMATTED_2, YANDEX_MARKET } from '../../utils/constants'
 import styles from './info.module.css'
 
 export const AboutPage = () => {
@@ -8,8 +8,8 @@ export const AboutPage = () => {
       <h2>О компании</h2>
       <div className={styles.block}>
         <h3>Контакты</h3>
-        <p>Основной номер телефона: <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER_FORMATTED}</a></p>
-        <p>Дополнительный номер телефона: <a href={`tel:${PHONE_NUMBER_2}`}>{PHONE_NUMBER_FORMATTED_2}</a></p>
+        {/* <p>Основной номер телефона: <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER_FORMATTED}</a></p> */}
+        <p>Номер телефона: <a href={`tel:${PHONE_NUMBER_2}`}>{PHONE_NUMBER_FORMATTED_2}</a></p>
         <p>Почта: <a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
       </div>
 

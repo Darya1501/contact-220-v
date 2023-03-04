@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../images/logo.svg'
-import { EMAIL, PHONE_NUMBER, PHONE_NUMBER_2, PHONE_NUMBER_FORMATTED, PHONE_NUMBER_FORMATTED_2, YANDEX_MARKET } from '../../utils/constants'
+import { EMAIL, PHONE_NUMBER_2, PHONE_NUMBER_FORMATTED_2, YANDEX_MARKET } from '../../utils/constants'
 import styles from './footer.module.css'
 
 export const Footer = () => {
@@ -23,10 +23,10 @@ export const Footer = () => {
           </div>
           <div className={styles.block}>
             <span>Контакты</span>
-            <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER_FORMATTED}</a>
+            {/* <a href={`tel:${PHONE_NUMBER}`}>{PHONE_NUMBER_FORMATTED}</a> */}
             <a href={`tel:${PHONE_NUMBER_2}`}>{PHONE_NUMBER_FORMATTED_2}</a>
             <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-            <span>г. Новороссийск, ул. Уличная, д. 15</span>
+            {/* <span>г. Новороссийск, ул. Уличная, д. 15</span> */}
           </div>
         </div>
       </div>
