@@ -11,11 +11,24 @@ type TProductCardProps = {
 }
 
 export const ProductCard: FC<TProductCardProps>= ({ product, style }) => {
+  const getPrice = () => {
+    let price = '0';
+
+    if (product.variants) {
+      const range = product.variants.map(variant => variant.price)
+      price = `${Math.min(...range)}-${Math.max(...range)}`
+    } else {
+      price = `${product.price}`
+    }
+
+    return price
+  }
+
   return (
     <Link to={`/catalog/${product.id}`} className={styles.card} style={style}>
       <img className={styles.image} src={product.image ? product.image : plug} alt="" />
       <div className={styles.description}>
-        <span className={styles.price}>{product.price} ₽</span>
+        <span className={styles.price}>{getPrice()} ₽</span>
         <span className={styles.title}>{product.title}</span>
       </div>
     </Link>

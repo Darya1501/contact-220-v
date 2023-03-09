@@ -1,4 +1,4 @@
-import { TCartProduct } from "../../utils/types"
+import { TCartProduct, TProduct, TProductVariant } from "../../utils/types"
 import {
   ADD_PRODUCT_TO_CART,
   REMOVE_PRODUCT_FROM_CART,
@@ -10,7 +10,7 @@ import {
 
 interface IAddProductToCart {
   readonly type: typeof ADD_PRODUCT_TO_CART,
-  product: TCartProduct
+  product: TCartProduct,
 }
 interface IRemoveProductFromCart {
   readonly type: typeof REMOVE_PRODUCT_FROM_CART,
@@ -21,11 +21,11 @@ interface IClearCart {
 }
 interface IIncrementProductCount {
   readonly type: typeof INCREMENT_PRODUCT_COUNT,
-  id: string
+  id: number
 }
 interface IDecrementProductCount {
   readonly type: typeof DECREMENT_PRODUCT_COUNT,
-  id: string
+  id: number
 }
 interface IFillCart {
   readonly type: typeof FILL_CART
@@ -39,3 +39,16 @@ export type TCartActions =
   IIncrementProductCount |
   IDecrementProductCount |
   IFillCart;
+
+export function addCartProduct(product: TProduct, count: number, variant: TProductVariant | undefined): IAddProductToCart {
+  return({
+    type: ADD_PRODUCT_TO_CART,
+    product: {
+      ...product,
+      count: count,
+      variant: variant ? variant : undefined,
+      price: variant ? variant.price : product.price,
+      cartID: Date.now()
+    },
+  })
+}

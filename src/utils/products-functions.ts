@@ -1,4 +1,4 @@
-import { TProduct } from "./types";
+import { TCartProduct, TProduct, TProductVariant } from "./types";
 
 export const getCategories = (products: Array<TProduct>): Array<string> => {
   const categories = products.map((product: TProduct) => product.category);
@@ -6,12 +6,18 @@ export const getCategories = (products: Array<TProduct>): Array<string> => {
   return Array.from(new Set(categories))
 }
 
-export const isProductInCart = (product: TProduct | undefined, cart: Array<TProduct>): boolean => {
+export const isProductInCart = (product: TProduct | undefined, cart: Array<TCartProduct>, variant: TProductVariant | undefined): boolean => {
   if (!product || !cart) return false 
 
   let flag = false;
   for (let i = 0; i < cart.length; i++) {
-    if (cart[i].id === product.id) flag = true;
+    if (cart[i].id === product.id) {
+      if (variant) {
+        if (cart[i].variant?.variant === variant.variant) flag = true
+      } else {
+        flag = true
+      }
+    };
   }
   return flag
 }

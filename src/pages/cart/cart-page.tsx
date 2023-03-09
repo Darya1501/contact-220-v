@@ -42,7 +42,10 @@ export const CartPage = () => {
     if (data.address) message += `\nАдрес доставки: ${data.address}`
     if (data.comment) message += `\nКомментарий: ${data.comment}`
     message += `\n\nЗаказ:${products.map((product, index) => 
-    `\n${index + 1}) артикул: ${product.id},\nназвание: ${product.title},\nколичество: ${product.count}`)}`
+    `\n${index + 1}) артикул: ${product.id},\nназвание: ${product.title},` +
+    `\nвариант: ${product.variant? product.variant.variant : 'товар без вариантов'}` +
+    `\nколичество: ${product.count}`)}`
+    message += `\n\nСумма заказа: ${totalPrice}р`
 
     sendTgMessage(message)
     .then(() => {
@@ -64,7 +67,9 @@ export const CartPage = () => {
           isProductsRequest ? (<Loader />) : 
           (
             <div className={styles.items}>
-              { products && products.length ? products.map(product => (<CartItem key={product.id} product={product} />)) : <CartPlug /> }
+              { products && products.length ? products.map(product => (
+              <CartItem key={product.cartID} product={product} />
+              )) : <CartPlug /> }
             </div>
           )
         }

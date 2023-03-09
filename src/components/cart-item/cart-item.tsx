@@ -20,7 +20,7 @@ export const CartItem: FC<TItemProps> = ({ product }) => {
   const changeCount = (action: 'increment' | 'decrement') => {
     dispatch({ 
       type: action === 'increment' ? INCREMENT_PRODUCT_COUNT : DECREMENT_PRODUCT_COUNT,
-      id: product.id
+      id: product.cartID
     })
 
     const newCount = action === 'increment' ? product.count + 1 : product.count - 1;
@@ -36,7 +36,9 @@ export const CartItem: FC<TItemProps> = ({ product }) => {
     <div className={styles.card}>
       <img className={styles.image} src={product.image ? product.image : plug} alt="" />
       <div className={styles.info}>
-        <Link to={`/catalog/${product.id}`} className={styles.name}>{product.title}</Link>
+        <Link to={`/catalog/${product.id}`} className={styles.name}>
+          {product.title}{product.variant ? `, ${product.variant.variant}` : ''}
+        </Link>
         <CountInput count={product.count} changeCount={changeCount} />
         <span className={styles.price}>{product.price * product.count}₽</span>
       </div>

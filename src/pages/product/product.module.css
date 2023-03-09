@@ -63,6 +63,30 @@
   margin-bottom: 24px;
 }
 
+.variants {
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.variant {
+  max-width: 120px;
+  border: 2px solid #E0E1E4;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.variant.active {
+  border: 2px solid #FD7621;
+  background-color: #fff;
+}
+
 .name {
   margin-right: 24px;
   flex-shrink: 0;

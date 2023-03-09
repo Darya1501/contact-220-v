@@ -16,6 +16,11 @@ export type TProductsCharacteristic = {
   [name: string]: string
 }
 
+export type TProductVariant = {
+  variant: string,
+  price: number
+}
+
 export type TProduct = {
   id: string,
   title: string,
@@ -27,9 +32,14 @@ export type TProduct = {
     count: number,
     show: boolean
   }
+  variants?: Array<TProductVariant>
 }
 
-export type TCartProduct = TProduct & { count: number }
+export type TCartProduct = TProduct & {
+  cartID: number,
+  count: number,
+  variant?: TProductVariant
+}
 
 export type TService = {
   title: string,

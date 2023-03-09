@@ -29,13 +29,13 @@ export const cartReducer = (state = initialCartState, action: TCartActions): TCa
     case INCREMENT_PRODUCT_COUNT: {
       return {
         ...state,
-        products: state.products.map(product => product.id === action.id ? { ...product, count: product.count + 1 } : product)
+        products: state.products.map(product => product.cartID === action.id ? { ...product, count: product.count + 1 } : product)
       }
     }
     case DECREMENT_PRODUCT_COUNT: {
       return {
         ...state,
-        products: state.products.map(product => product.id === action.id ? { ...product, count: product.count - 1 } : product)
+        products: state.products.map(product => product.cartID === action.id ? { ...product, count: product.count - 1 } : product)
       }
     }
     case CLEAR_CART: {
