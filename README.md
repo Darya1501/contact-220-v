@@ -1,6 +1,6 @@
 # Contact 220v
 
-Сайт-визитка магазина электрики и электротоваров. Демо: [firebase hosting](https://contact-220-v.web.app)
+Сайт-визитка магазина электрики и электротоваров. Демо: [firebase hosting](https://contact-220-v.web.app){:target="_blank"}
 
 ## О проекте
 
