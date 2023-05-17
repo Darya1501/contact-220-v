@@ -14,8 +14,7 @@ export const initialProductsState: TProductsState = {
   isProductsSuccess: false,
   isProductsFailed: false,
 
-  products: [
-  ]
+  products: []
 }
 
 export const productsReducer = (state = initialProductsState, action: TProductsActions): TProductsState => {

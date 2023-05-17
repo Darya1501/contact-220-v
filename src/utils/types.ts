@@ -1,5 +1,6 @@
 import { ThunkAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { TCartActions } from "../store/actions/cart";
+import { TCategoriesActions } from "../store/actions/categories";
 import { TProductsActions } from "../store/actions/products";
 import { TServicesActions } from "../store/actions/services";
 import { store } from "../store/store";
@@ -7,7 +8,7 @@ import { store } from "../store/store";
 export type RootState = ReturnType<typeof store.getState>;
 
 export type TApplicationActions =
-  TProductsActions | TCartActions | TServicesActions;
+  TProductsActions | TCategoriesActions | TCartActions | TServicesActions;
 
 export type AppThunk<TReturn = void> = ThunkAction<TReturn, RootState, never, TApplicationActions>;
 export type AppDispatch = ThunkDispatch<RootState, never, TApplicationActions>;
@@ -16,29 +17,37 @@ export type TProductsCharacteristic = {
   [name: string]: string
 }
 
+export type TCategory = {
+  id: number,
+  title: string,
+  parentId: number,
+  children: TCategory[],
+}
+
 export type TProductVariant = {
-  variant: string,
-  price: number
+  id: number,
+  article: string,
+  title: string,
+  price: number,
+  image: string,
+  description: string,
+  count: number,
 }
 
 export type TProduct = {
-  id: string,
+  id: number,
   title: string,
-  price: number,
-  category: string,
-  image: string,
+  externalId: string | null,
+  source: number,
+  categoryId: number,
+  variants: Array<TProductVariant>,
   characteristics?: Array<TProductsCharacteristic>,
-  quantity?: {
-    count: number,
-    show: boolean
-  }
-  variants?: Array<TProductVariant>
 }
 
 export type TCartProduct = TProduct & {
   cartID: number,
   count: number,
-  variant?: TProductVariant
+  variant: TProductVariant
 }
 
 export type TService = {

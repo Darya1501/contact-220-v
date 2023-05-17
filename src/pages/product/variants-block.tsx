@@ -10,21 +10,18 @@ type TVariantsBlock = {
 
 export const VariantsBlock: FC<TVariantsBlock> = ({ variants, selectedVariant, setSelectedVariant }) => {
   return (
-  <>
-    <p>Варианты</p>
     <div className={styles.variants}>
       {
         variants.map(variant => (
           <div
             className={`${styles.variant} ${variant === selectedVariant ? styles.active : ''}`}
-            key={variant.variant}
+            key={variant.id}
             onClick={() => setSelectedVariant(variant)}
           >
-            <span>{variant.variant}</span>
+            <span>{variant.title}</span>
           </div>
         ))
       }
     </div>
-  </>
   )
 }

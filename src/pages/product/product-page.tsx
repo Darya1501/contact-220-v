@@ -13,14 +13,13 @@ import { ApplicationSent } from '../../components/ui/application-sent'
 import { sendTgMessage } from '../../utils/send-tg-message'
 import { SmtWentWrong } from '../../components/ui/smt-went-wrong'
 import { PriceCartBlock } from './price-cart-block'
-import { CharacteristicsBlock } from './characteristics-block'
 import { VariantsBlock } from './variants-block'
 
 export const ProductPage = () => {
   const { isProductsRequest, products } = useSelector(store => store.products)
 
   const { id } = useParams<{ id?: string }>();
-  const currentProduct = products.find((product: TProduct) => product.id === id)
+  const currentProduct = products.find((product: TProduct) => product.id === Number(id))
 
   const [ count, setCount ] = useState(1);
   const [ isModal, setIsModal ] = useState(false)
@@ -28,8 +27,19 @@ export const ProductPage = () => {
   const [ isNotSentModal, setIsNotSentModal ] = useState(false)
   const [ selectedVariant, setSelectedVariant ] = useState<TProductVariant>()
 
+  const [ productImage, setProductImage ] = useState(plug);
+
   useEffect(() => {
     if (currentProduct && currentProduct.variants) setSelectedVariant(currentProduct.variants[0])
+  }, [currentProduct])
+
+  useEffect(() => {
+    if (currentProduct) {
+    const images = currentProduct.variants.map(variant => variant.image).filter(image => image !== null);
+    if (images.length) {
+      setProductImage(`${process.env.REACT_APP_BACKEND_URL}${images[0]}`)
+    }
+  }
   }, [currentProduct])
 
   const submitOrder = async (data: TFormValues) => {
@@ -38,7 +48,7 @@ export const ProductPage = () => {
       if (data.address) message += `\nАдрес доставки: ${data.address}`
       if (data.comment) message += `\nКомментарий: ${data.comment}`
       message += `\n\nЗаказ: ${currentProduct.title} (артикул: ${currentProduct.id}),\nколичество: ${count}`
-      if (selectedVariant) message += `\nВариант товара: ${selectedVariant.variant} (стоимость: ${selectedVariant.price}р)`
+      if (selectedVariant) message += `\nВариант товара: ${selectedVariant.title} (стоимость: ${selectedVariant.price}р)`
 
       sendTgMessage(message)
       .then(() => {
@@ -60,11 +70,17 @@ export const ProductPage = () => {
           currentProduct ?
             (
               <>
-                <img className={styles.image} src={currentProduct.image ? currentProduct.image : plug} alt="" />
+                { productImage !== plug && 
+                  <img
+                    className={styles.image}
+                    src={selectedVariant?.image ? `${process.env.REACT_APP_BACKEND_URL}${selectedVariant.image}` : productImage}
+                    alt=""
+                  />
+                }
                 <div className={styles.wrapper}>
                   <div className={styles.description}>
                     <h2 className={styles.h2}>{currentProduct.title}</h2>
-                    <p className={styles.id}>Артикул: {currentProduct.id}</p>
+                    <p className={styles.id}>Артикул: {selectedVariant?.article}</p>
                     <div className={styles.characteristics}>
                       {
                         currentProduct.variants && (
@@ -75,7 +91,9 @@ export const ProductPage = () => {
                           />
                         )
                       }
-                      <CharacteristicsBlock currentProduct={currentProduct} />
+                      {/* <CharacteristicsBlock currentProduct={currentProduct} /> */}       
+                      <p>Описание</p>
+                      {selectedVariant?.description ? selectedVariant.description : 'У данного товара нет описания'}
                     </div>
                   </div>
 

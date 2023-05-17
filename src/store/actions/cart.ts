@@ -14,7 +14,7 @@ interface IAddProductToCart {
 }
 interface IRemoveProductFromCart {
   readonly type: typeof REMOVE_PRODUCT_FROM_CART,
-  id: string
+  id: number
 }
 interface IClearCart {
   readonly type: typeof CLEAR_CART
@@ -40,14 +40,13 @@ export type TCartActions =
   IDecrementProductCount |
   IFillCart;
 
-export function addCartProduct(product: TProduct, count: number, variant: TProductVariant | undefined): IAddProductToCart {
+export function addCartProduct(product: TProduct, count: number, variant: TProductVariant): IAddProductToCart {
   return({
     type: ADD_PRODUCT_TO_CART,
     product: {
       ...product,
       count: count,
-      variant: variant ? variant : undefined,
-      price: variant ? variant.price : product.price,
+      variant: variant,
       cartID: Date.now()
     },
   })

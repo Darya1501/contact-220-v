@@ -176,6 +176,11 @@
   .id {
     margin-bottom: 24px;
   }
+  .variant {
+    font-size: 14px;
+    padding: 4px;
+    max-width: 100px;
+  }
 }
 
 @media (max-width: 600px) {

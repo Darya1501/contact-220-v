@@ -37,7 +37,7 @@ export const PriceCartBlock: FC<TPriceCartBlock> = ({ currentProduct, selectedVa
   const dispatch = useDispatch()
 
   const addToCart = () => {
-    if (currentProduct) {
+    if (currentProduct && selectedVariant) {
       dispatch(addCartProduct(currentProduct, count, selectedVariant))
       setIsInCart(true)
     }
@@ -48,18 +48,18 @@ export const PriceCartBlock: FC<TPriceCartBlock> = ({ currentProduct, selectedVa
       <div className={styles.buy}>
         <div className={styles.count}>
           <span className={styles.price}>
-            { selectedVariant ? selectedVariant.price * count : currentProduct.price * count } ₽
+            { selectedVariant && selectedVariant.price * count } ₽
           </span>
           <CountInput count={count} changeCount={changeCount} />
         </div>
         <Button isDisabled={isInCart} style={{ width: '100%' }} onClick={addToCart}>
-          { isInCart ? 'Товар в корзинe' : 'В корзину' }
+          { isInCart ? 'Товар в корзине' : 'В корзину' }
         </Button>
         <Button onClick={() => setIsModal(true)} isSecondary style={{ width: '100%' }}>Заказать сейчас</Button>
       </div>
       {
-        currentProduct.quantity && currentProduct.quantity.show && currentProduct.quantity.count > 0 &&
-        (<p className={styles.quantity}>Количество на складе: {currentProduct.quantity.count}</p>)
+        selectedVariant && selectedVariant.count > 0 &&
+        (<p className={styles.quantity}>Количество на складе: {selectedVariant.count}</p>)
       }
     </div>
   )

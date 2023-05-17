@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  min-width: 200px;
+  width: 215px;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -34,9 +34,14 @@
   color: #909193
 }
 
+.category:hover {
+  background-color: #FFE4D3;
+}
+
 .active {
   background-color: #FD7621;
   color: #FFFFFF;
+  pointer-events: none;
 }
 
 .products {
@@ -54,19 +59,19 @@
 
 @media (max-width: 1400px ) {
   .container {
-    gap: 120px;
+    gap: 115px;
   }
 }
 
 @media (max-width: 1200px ) {
   .container {
-    gap: 60px;
+    gap: 38px;
   }
   .navigation {
-    min-width: 160px;
+    width: 190px;
   }
   .products {
-    gap: 20px;
+    gap: 16px;
   }
 }
 
@@ -78,7 +83,7 @@
     padding: 40px 0;
     position: relative;
   }
-  .desctop {
+  .desktop {
     display: none;
   }
   .mobile {

@@ -21,6 +21,7 @@ import { QuestionsPage } from './pages/info/questions-page';
 import { Error404 } from './pages/info/error-404';
 import { ServicesPage } from './pages/services/services-page';
 import { getServices } from './store/actions/services';
+import { getCategories } from './store/actions/categories';
 
 const app = initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -40,6 +41,7 @@ function App() {
 
   useEffect(
     () => {
+      dispatch(getCategories());
       dispatch(getProducts());
       dispatch(getServices());
     },

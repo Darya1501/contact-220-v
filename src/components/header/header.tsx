@@ -30,7 +30,7 @@ export const Header = () => {
             <Link to='/'>
               <img className={styles.logo} src={logo} alt="logo" />
             </Link>
-            <div className={styles.desctop}><Navigation /></div>
+            <div className={styles.desktop}><Navigation /></div>
             <Link to='/cart' className={styles.cart}>
               <img className={styles.cart} src={cart} alt="Корзина" />
               { products && products.length !== 0 && <span className={styles.counter}>{products.length}</span>}

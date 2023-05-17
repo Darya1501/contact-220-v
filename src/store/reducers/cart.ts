@@ -23,7 +23,7 @@ export const cartReducer = (state = initialCartState, action: TCartActions): TCa
     case REMOVE_PRODUCT_FROM_CART: {
       return {
         ...state,
-        products: state.products.filter(product => product.id !== action.id)
+        products: state.products.filter(product => product.cartID !== action.id)
       }
     }
     case INCREMENT_PRODUCT_COUNT: {

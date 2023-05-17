@@ -28,19 +28,24 @@ export const CartItem: FC<TItemProps> = ({ product }) => {
   }
 
   const deleteProduct = () => {
-    dispatch({ type: REMOVE_PRODUCT_FROM_CART, id: product.id })
+    dispatch({ type: REMOVE_PRODUCT_FROM_CART, id: product.cartID })
     updateCookieCart(cartProducts.filter(item => product.id !== item.id))
+  }
+
+  const getImage = () => {
+    const images = product.variants.map(variant => variant.image).filter(image => image !== null);
+    return images.length ? `${process.env.REACT_APP_BACKEND_URL}${images[0]}` : plug;
   }
 
   return (
     <div className={styles.card}>
-      <img className={styles.image} src={product.image ? product.image : plug} alt="" />
+      <img className={styles.image} src={getImage()} alt="" />
       <div className={styles.info}>
         <Link to={`/catalog/${product.id}`} className={styles.name}>
-          {product.title}{product.variant ? `, ${product.variant.variant}` : ''}
+          {product.title}{product.variant ? `, ${product.variant.title}` : ''}
         </Link>
         <CountInput count={product.count} changeCount={changeCount} />
-        <span className={styles.price}>{product.price * product.count}₽</span>
+        <span className={styles.price}>{product.variant.price * product.count}₽</span>
       </div>
       <button className={styles.trash} onClick={deleteProduct}><img src={trash} alt="delete product" /></button>
     </div>

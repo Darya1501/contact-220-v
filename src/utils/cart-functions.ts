@@ -3,7 +3,7 @@ import { getCookie, isCookie, setCookie } from "./cookies";
 import { TCartProduct, TProduct, TProductVariant } from "./types";
 
 type TCookieProduct = {
-  id: string,
+  id: number,
   count: number, 
   variant: TProductVariant,
   price: number,
@@ -15,13 +15,12 @@ export const updateCookieCart = (products: Array<TCartProduct>) => {
     id: product.id,
     count: product.count,
     variant: product.variant,
-    price: product.price,
     cartID: product.cartID
   }))
   setCookie(COOKIE_CART_NAME, JSON.stringify(cart))
 }
 
-const getProductById = (id: string, products: Array<TProduct>) => {
+const getProductById = (id: number, products: Array<TProduct>) => {
   return products.filter(product => product.id === id)[0]
 }
 
